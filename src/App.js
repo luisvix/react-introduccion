@@ -1,24 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
+import {CreateOneTamal, ListOfTamales} from "./screens";
+import {useRef, useState} from "react";
+import {Button} from "@material-ui/core";
 
 function App() {
+  const [currentWindow, setCurrentWindow] = useState('Lista_de_tamales')
+  const currentWindow2 = useRef('Lista_de_tamales')
+
+  const handleClickChangeWindowButton = ()=>{
+    setCurrentWindow('Crear_tamal')
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Button variant={'contained'} onClick={handleClickChangeWindowButton}>Cambiando estado</Button>
+      {currentWindow==='Crear_tamal' && <CreateOneTamal /> }
+      {currentWindow==='Lista_de_tamales' && <ListOfTamales />}
+    </>
   );
 }
 
